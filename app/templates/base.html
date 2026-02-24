@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Unix & Networking{% endblock %} | Learn by Doing</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+
+    <style>
+        /* Custom terminal styling */
+        .terminal {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+        }
+        .terminal-output {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        /* Code blocks */
+        code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+        }
+        /* Smooth transitions */
+        .htmx-settling {
+            opacity: 0.8;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="h-full bg-gray-50" x-data="{ sidebarOpen: false }">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <span class="text-2xl">🐧</span>
+                        <span class="font-bold text-xl text-gray-900">Unix & Networking</span>
+                    </a>
+                </div>
+                <div class="hidden sm:flex sm:items-center sm:space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="/concepts" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Concepts</a>
+                    <a href="/playground" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Playground</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="sm:hidden flex items-center">
+                    <button @click="sidebarOpen = !sidebarOpen" class="text-gray-500 hover:text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div x-show="sidebarOpen" x-cloak class="sm:hidden border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/" class="block px-3 py-2 text-gray-600 hover:text-gray-900">Home</a>
+                <a href="/concepts" class="block px-3 py-2 text-gray-600 hover:text-gray-900">Concepts</a>
+                <a href="/playground" class="block px-3 py-2 text-gray-600 hover:text-gray-900">Playground</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="flex-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm text-gray-500">
+                Learn Unix & Networking by doing. Practice in a safe sandbox environment.
+            </p>
+        </div>
+    </footer>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

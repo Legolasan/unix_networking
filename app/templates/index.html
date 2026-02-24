@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+            Learn Unix & Networking
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+            Master terminal commands and networking concepts through hands-on practice.
+            Learn by doing in a safe Docker sandbox environment.
+        </p>
+        <a href="/playground" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+            Open Terminal Playground
+            <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Categories -->
+    <div class="grid md:grid-cols-2 gap-8">
+        <!-- Unix Section -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div class="flex items-center mb-4">
+                <span class="text-3xl mr-3">🐧</span>
+                <h2 class="text-2xl font-bold text-gray-900">Unix Essentials</h2>
+            </div>
+            <p class="text-gray-600 mb-6">
+                File system navigation, permissions, pipes, processes, and shell scripting.
+            </p>
+
+            <div class="space-y-3">
+                {% for concept in unix_concepts[:5] %}
+                <a href="/concepts/{{ concept.slug }}" class="block p-3 rounded-md hover:bg-gray-50 border border-gray-100 transition">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="font-medium text-gray-900">{{ concept.title }}</span>
+                            <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ concept.difficulty_badge_color }}">
+                                {{ concept.difficulty }}
+                            </span>
+                        </div>
+                        <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                    {% if concept.short_description %}
+                    <p class="text-sm text-gray-500 mt-1">{{ concept.short_description }}</p>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+
+            {% if unix_concepts|length > 5 %}
+            <a href="/concepts?category=unix" class="block mt-4 text-center text-indigo-600 hover:text-indigo-700 font-medium">
+                View all {{ unix_concepts|length }} Unix concepts →
+            </a>
+            {% endif %}
+        </div>
+
+        <!-- Networking Section -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div class="flex items-center mb-4">
+                <span class="text-3xl mr-3">🌐</span>
+                <h2 class="text-2xl font-bold text-gray-900">Networking</h2>
+            </div>
+            <p class="text-gray-600 mb-6">
+                TCP/IP, DNS, HTTP, debugging tools, and network troubleshooting.
+            </p>
+
+            <div class="space-y-3">
+                {% for concept in networking_concepts[:5] %}
+                <a href="/concepts/{{ concept.slug }}" class="block p-3 rounded-md hover:bg-gray-50 border border-gray-100 transition">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="font-medium text-gray-900">{{ concept.title }}</span>
+                            <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ concept.difficulty_badge_color }}">
+                                {{ concept.difficulty }}
+                            </span>
+                        </div>
+                        <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                    {% if concept.short_description %}
+                    <p class="text-sm text-gray-500 mt-1">{{ concept.short_description }}</p>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+
+            {% if networking_concepts|length > 5 %}
+            <a href="/concepts?category=networking" class="block mt-4 text-center text-indigo-600 hover:text-indigo-700 font-medium">
+                View all {{ networking_concepts|length }} Networking concepts →
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Getting Started -->
+    <div class="mt-12 bg-indigo-50 rounded-lg p-8">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Getting Started</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="flex items-start">
+                <span class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-100 text-indigo-600 font-bold mr-3">1</span>
+                <div>
+                    <h3 class="font-medium text-gray-900">Pick a Concept</h3>
+                    <p class="text-sm text-gray-600">Choose from Unix or Networking topics based on your skill level.</p>
+                </div>
+            </div>
+            <div class="flex items-start">
+                <span class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-100 text-indigo-600 font-bold mr-3">2</span>
+                <div>
+                    <h3 class="font-medium text-gray-900">Read & Learn</h3>
+                    <p class="text-sm text-gray-600">Understand the concept with clear explanations and examples.</p>
+                </div>
+            </div>
+            <div class="flex items-start">
+                <span class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-100 text-indigo-600 font-bold mr-3">3</span>
+                <div>
+                    <h3 class="font-medium text-gray-900">Practice</h3>
+                    <p class="text-sm text-gray-600">Use "Try It" buttons to run commands in a real terminal.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

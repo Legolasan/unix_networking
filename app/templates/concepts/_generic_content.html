@@ -1,0 +1,14 @@
+{# Generic concept content fallback #}
+<div class="prose max-w-none">
+    <h2>{{ concept.title }}</h2>
+    <p>{{ concept.short_description }}</p>
+
+    {% if concept.commands %}
+    <h3>Commands</h3>
+    <ul>
+        {% for cmd in concept.commands %}
+        <li><code>{{ cmd }}</code></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>

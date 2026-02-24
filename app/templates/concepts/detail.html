@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}{{ concept.title }}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Breadcrumb -->
+    <nav class="mb-6 text-sm">
+        <a href="/" class="text-gray-500 hover:text-gray-700">Home</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <a href="/concepts" class="text-gray-500 hover:text-gray-700">Concepts</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="text-gray-900">{{ concept.title }}</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="mb-8">
+        <div class="flex items-center gap-3 mb-2">
+            <span class="text-2xl">{{ concept.category_icon }}</span>
+            <h1 class="text-3xl font-bold text-gray-900">{{ concept.title }}</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded text-sm font-medium {{ concept.difficulty_badge_color }}">
+                {{ concept.difficulty }}
+            </span>
+            <span class="text-gray-500">{{ concept.category | title }}</span>
+        </div>
+        {% if concept.short_description %}
+        <p class="mt-4 text-lg text-gray-600">{{ concept.short_description }}</p>
+        {% endif %}
+    </div>
+
+    <!-- Commands covered -->
+    {% if concept.commands %}
+    <div class="mb-8 p-4 bg-gray-50 rounded-lg">
+        <h3 class="text-sm font-medium text-gray-500 mb-2">Commands covered</h3>
+        <div class="flex flex-wrap gap-2">
+            {% for cmd in concept.commands %}
+            <code class="px-2 py-1 bg-white border border-gray-200 rounded text-sm font-mono">{{ cmd }}</code>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Try It Examples -->
+    {% if concept.try_it_examples %}
+    <div class="mb-8">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Try It Yourself</h2>
+        <div class="space-y-3">
+            {% for example in concept.try_it_examples %}
+            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-medium text-gray-900">{{ example.title }}</h3>
+                    <a href="/playground?cmd={{ example.command | urlencode }}&from={{ concept.slug }}"
+                       class="inline-flex items-center px-3 py-1 border border-indigo-600 text-sm font-medium rounded-md text-indigo-600 hover:bg-indigo-50 transition">
+                        Try it →
+                    </a>
+                </div>
+                <code class="block bg-gray-900 text-green-400 px-3 py-2 rounded font-mono text-sm mb-2">$ {{ example.command }}</code>
+                {% if example.description %}
+                <p class="text-sm text-gray-500">{{ example.description }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Gotchas -->
+    {% if concept.gotchas %}
+    <div class="mb-8">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Common Gotchas</h2>
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <ul class="space-y-2">
+                {% for gotcha in concept.gotchas %}
+                <li class="flex items-start">
+                    <span class="text-yellow-500 mr-2">⚠️</span>
+                    <span class="text-gray-700">{{ gotcha }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Related Concepts -->
+    {% if related_concepts %}
+    <div class="mt-12 pt-8 border-t border-gray-200">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Related Concepts</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+            {% for related in related_concepts %}
+            <a href="/concepts/{{ related.slug }}" class="block p-4 bg-white border border-gray-200 rounded-lg hover:border-indigo-300 transition">
+                <div class="flex items-center gap-2">
+                    <span>{{ related.category_icon }}</span>
+                    <span class="font-medium text-gray-900">{{ related.title }}</span>
+                </div>
+                <p class="text-sm text-gray-500 mt-1">{{ related.short_description }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Navigation -->
+    <div class="mt-12 flex justify-between">
+        <a href="/concepts" class="text-indigo-600 hover:text-indigo-700">← Back to all concepts</a>
+        <a href="/playground" class="text-indigo-600 hover:text-indigo-700">Open Playground →</a>
+    </div>
+</div>
+{% endblock %}

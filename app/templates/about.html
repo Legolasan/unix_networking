@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">About This Project</h1>
+
+    <div class="prose prose-lg">
+        <p>
+            <strong>Unix & Networking Learn</strong> is an interactive learning platform
+            designed to help developers master Unix command-line skills and networking concepts.
+        </p>
+
+        <h2>Why This Exists</h2>
+        <p>
+            The best way to learn Unix and networking is by doing. This platform provides
+            a safe sandbox environment where you can practice real commands without fear
+            of breaking anything.
+        </p>
+
+        <h2>Features</h2>
+        <ul>
+            <li><strong>Interactive Terminal</strong> - A real terminal connected to a Docker sandbox</li>
+            <li><strong>Structured Learning</strong> - Concepts organized by difficulty level</li>
+            <li><strong>Try It Examples</strong> - Pre-configured commands to run and learn from</li>
+            <li><strong>Safe Environment</strong> - Experiment freely in an isolated container</li>
+        </ul>
+
+        <h2>Tech Stack</h2>
+        <ul>
+            <li>Flask (Python web framework)</li>
+            <li>Docker (Sandbox environment)</li>
+            <li>Alpine.js + HTMX (Frontend interactivity)</li>
+            <li>Tailwind CSS (Styling)</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

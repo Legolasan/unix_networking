@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}All Concepts{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">All Concepts</h1>
+        <p class="mt-2 text-gray-600">Learn Unix and networking fundamentals through hands-on practice.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <!-- Unix Section -->
+        <div>
+            <div class="flex items-center mb-4">
+                <span class="text-2xl mr-2">🐧</span>
+                <h2 class="text-xl font-bold text-gray-900">Unix Essentials</h2>
+            </div>
+
+            <div class="space-y-3">
+                {% for concept in unix_concepts %}
+                <a href="/concepts/{{ concept.slug }}" class="block bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:border-indigo-300 hover:shadow transition">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-medium text-gray-900">{{ concept.title }}</span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ concept.difficulty_badge_color }}">
+                            {{ concept.difficulty }}
+                        </span>
+                    </div>
+                    <p class="text-sm text-gray-500">{{ concept.short_description }}</p>
+                    {% if concept.commands %}
+                    <div class="mt-2 flex flex-wrap gap-1">
+                        {% for cmd in concept.commands[:4] %}
+                        <code class="px-1.5 py-0.5 bg-gray-100 rounded text-xs text-gray-700">{{ cmd }}</code>
+                        {% endfor %}
+                        {% if concept.commands|length > 4 %}
+                        <span class="text-xs text-gray-400">+{{ concept.commands|length - 4 }} more</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Networking Section -->
+        <div>
+            <div class="flex items-center mb-4">
+                <span class="text-2xl mr-2">🌐</span>
+                <h2 class="text-xl font-bold text-gray-900">Networking</h2>
+            </div>
+
+            <div class="space-y-3">
+                {% for concept in networking_concepts %}
+                <a href="/concepts/{{ concept.slug }}" class="block bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:border-indigo-300 hover:shadow transition">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-medium text-gray-900">{{ concept.title }}</span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ concept.difficulty_badge_color }}">
+                            {{ concept.difficulty }}
+                        </span>
+                    </div>
+                    <p class="text-sm text-gray-500">{{ concept.short_description }}</p>
+                    {% if concept.commands %}
+                    <div class="mt-2 flex flex-wrap gap-1">
+                        {% for cmd in concept.commands[:4] %}
+                        <code class="px-1.5 py-0.5 bg-gray-100 rounded text-xs text-gray-700">{{ cmd }}</code>
+                        {% endfor %}
+                        {% if concept.commands|length > 4 %}
+                        <span class="text-xs text-gray-400">+{{ concept.commands|length - 4 }} more</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
