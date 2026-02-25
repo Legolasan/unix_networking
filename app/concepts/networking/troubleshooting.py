@@ -50,7 +50,7 @@ concept = BaseConcept(
         "Use -n flags to avoid DNS lookups when debugging DNS issues",
         "Check /etc/resolv.conf for DNS server configuration",
     ],
-    related=["connectivity-testing", "dns-tools", "network-inspection", "packet-analysis"],
+    related=["connectivity-testing", "dns-tools", "network-inspection", "packet-analysis", "error-layers", "connection-errors", "tls-errors", "auth-errors"],
 )
 
 register_concept(concept)

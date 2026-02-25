@@ -50,7 +50,7 @@ concept = BaseConcept(
         "curl -v shows verbose output including headers and TLS handshake",
         "Host header is required for virtual hosting (multiple sites on one IP)",
     ],
-    related=["dns-explained", "ports-protocols", "data-transfer"],
+    related=["dns-explained", "ports-protocols", "data-transfer", "tls-errors"],
 )
 
 register_concept(concept)

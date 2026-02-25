@@ -45,7 +45,7 @@ concept = BaseConcept(
         "wlan0/wlp0 are wireless interfaces",
         "Docker creates its own bridge network (docker0)",
     ],
-    related=["ip-addressing", "ports-protocols"],
+    related=["ip-addressing", "ports-protocols", "error-layers"],
 )
 
 register_concept(concept)

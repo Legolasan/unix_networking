@@ -74,6 +74,10 @@ def register_all_concepts(app):
     from app.concepts.networking import network_namespaces
     from app.concepts.networking import sockets
     from app.concepts.networking import troubleshooting
+    from app.concepts.networking import error_layers
+    from app.concepts.networking import connection_errors
+    from app.concepts.networking import tls_errors
+    from app.concepts.networking import auth_errors
 
     # Store concepts in app context for templates
     app.config["CONCEPTS"] = _concepts

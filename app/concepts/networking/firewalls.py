@@ -50,7 +50,7 @@ concept = BaseConcept(
         "ufw is a frontend for iptables - simpler syntax, same engine",
         "DROP silently discards; REJECT sends error back to sender",
     ],
-    related=["network-inspection", "ports-protocols", "sockets"],
+    related=["network-inspection", "ports-protocols", "sockets", "connection-errors"],
 )
 
 register_concept(concept)
