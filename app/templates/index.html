@@ -13,7 +13,7 @@
             Master terminal commands and networking concepts through hands-on practice.
             Learn by doing in a safe Docker sandbox environment.
         </p>
-        <a href="/playground" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+        <a href="{{ url_for('playground.playground') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
             Open Terminal Playground
             <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
@@ -35,7 +35,7 @@
 
             <div class="space-y-3">
                 {% for concept in unix_concepts[:5] %}
-                <a href="/concepts/{{ concept.slug }}" class="block p-3 rounded-md hover:bg-gray-50 border border-gray-100 transition">
+                <a href="{{ url_for('concepts.concept_detail', slug=concept.slug) }}" class="block p-3 rounded-md hover:bg-gray-50 border border-gray-100 transition">
                     <div class="flex items-center justify-between">
                         <div>
                             <span class="font-medium text-gray-900">{{ concept.title }}</span>
@@ -55,7 +55,7 @@
             </div>
 
             {% if unix_concepts|length > 5 %}
-            <a href="/concepts?category=unix" class="block mt-4 text-center text-indigo-600 hover:text-indigo-700 font-medium">
+            <a href="{{ url_for('concepts.concept_list') }}?category=unix" class="block mt-4 text-center text-indigo-600 hover:text-indigo-700 font-medium">
                 View all {{ unix_concepts|length }} Unix concepts →
             </a>
             {% endif %}
@@ -73,7 +73,7 @@
 
             <div class="space-y-3">
                 {% for concept in networking_concepts[:5] %}
-                <a href="/concepts/{{ concept.slug }}" class="block p-3 rounded-md hover:bg-gray-50 border border-gray-100 transition">
+                <a href="{{ url_for('concepts.concept_detail', slug=concept.slug) }}" class="block p-3 rounded-md hover:bg-gray-50 border border-gray-100 transition">
                     <div class="flex items-center justify-between">
                         <div>
                             <span class="font-medium text-gray-900">{{ concept.title }}</span>
@@ -93,7 +93,7 @@
             </div>
 
             {% if networking_concepts|length > 5 %}
-            <a href="/concepts?category=networking" class="block mt-4 text-center text-indigo-600 hover:text-indigo-700 font-medium">
+            <a href="{{ url_for('concepts.concept_list') }}?category=networking" class="block mt-4 text-center text-indigo-600 hover:text-indigo-700 font-medium">
                 View all {{ networking_concepts|length }} Networking concepts →
             </a>
             {% endif %}

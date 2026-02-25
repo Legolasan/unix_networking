@@ -19,7 +19,7 @@
 
             <div class="space-y-3">
                 {% for concept in unix_concepts %}
-                <a href="/concepts/{{ concept.slug }}" class="block bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:border-indigo-300 hover:shadow transition">
+                <a href="{{ url_for('concepts.concept_detail', slug=concept.slug) }}" class="block bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:border-indigo-300 hover:shadow transition">
                     <div class="flex items-center justify-between mb-2">
                         <span class="font-medium text-gray-900">{{ concept.title }}</span>
                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ concept.difficulty_badge_color }}">
@@ -51,7 +51,7 @@
 
             <div class="space-y-3">
                 {% for concept in networking_concepts %}
-                <a href="/concepts/{{ concept.slug }}" class="block bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:border-indigo-300 hover:shadow transition">
+                <a href="{{ url_for('concepts.concept_detail', slug=concept.slug) }}" class="block bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:border-indigo-300 hover:shadow transition">
                     <div class="flex items-center justify-between mb-2">
                         <span class="font-medium text-gray-900">{{ concept.title }}</span>
                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ concept.difficulty_badge_color }}">
